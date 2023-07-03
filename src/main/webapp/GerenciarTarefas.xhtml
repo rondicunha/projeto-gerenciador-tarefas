@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<title>Gerenciar Tarefas</title>
+</h:head>
+<h:body>
+	<p:button icon="pi pi-angle-left"
+		styleClass="rounded-button ui-button-secondary"
+		outcome="/CadastroTarefas.xhtml" style="margin-bottom:10px;" />
+	
+	<h:form>
+	<p:panel header="Listagem de Tarefas">
+		<div align="center">
+			<p:panelGrid columns="2"
+				columnClasses="ui-grid-col-2, ui-grid-col-8 ">
+				<p:outputLabel value="Número:" />
+				<p:inputText size="67" label="Título" />
+				<p:outputLabel value="Título/Descrição:" />
+				<p:inputTextarea cols="70" rows="5" autoResize="false" />
+			</p:panelGrid>
+			<p:panelGrid columns="6">
+				<p:outputLabel value="Responsável:" />
+				<p:selectOneMenu >
+					<f:selectItem itemLabel="Select" noSelectionOption="true" />
+					<f:selectItem itemLabel="Draco Malfoy" itemValue="Draco Malfoy" />
+					<f:selectItem itemLabel="Severus Snape" itemValue="Severus Snape" />
+					<f:selectItem itemLabel="Rúbeo Hagrid" itemValue="Rúbeo Hagrid" />
+					<f:selectItem itemLabel="Dino Thomas" itemValue="Dino Thomas" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Prioridade:" />
+				<p:selectOneMenu>
+					<f:selectItem itemLabel="Select" noSelectionOption="true" />
+					<f:selectItem itemLabel="Baixa" itemValue="Baixa" />
+					<f:selectItem itemLabel="Média" itemValue="Média" />
+					<f:selectItem itemLabel="Alta" itemValue="Alta" />
+				</p:selectOneMenu>
+				<p:commandButton value="Buscar Tarefa" styleClass="ui-button-secondary" />
+			</p:panelGrid>
+		</div>
+		<div style="display:flex; gap:10px; margin:20px 0px 20px 35%;">
+			<i class="pi pi-pencil"> : Editar</i>
+			<i class="pi pi-trash"> : Excluir</i>
+			<i class="pi pi-check"> : Concluir Tarefa</i>
+		</div>
+		<p:dataTable value="#{tarefaMB.tarefas}" var="t" id="tabela">
+			<p:column headerText="Numero">
+				<p:outputLabel value="#{t.id}" />
+			</p:column>
+			<p:column headerText="Título">
+				<p:outputLabel value="#{t.titulo}" />
+			</p:column>
+			<p:column headerText="Responsável">
+				<p:outputLabel value="#{t.responsavel}" />
+			</p:column>
+			<p:column headerText="Ações">
+			
+				<p:commandButton action="#{tarefaMB.editar}" icon="pi pi-pencil" update="tabela" process="@this" styleClass="rounded-button ui-button-secondary">
+					<f:setPropertyActionListener value="#{t}" target="#{tarefaMB.tarefa}"/>
+				</p:commandButton>
+				<span class="ui-separator"> <span
+					class="ui-icon ui-icon-grip-dotted-vertival" />
+				</span>
+				<p:commandButton action="#{tarefaMB.remover}" icon="pi pi-trash" update="tabela" process="@this" styleClass="rounded-button ui-button-secondary">
+					<f:setPropertyActionListener value="#{t}" target="#{tarefaMB.tarefa}"/>
+				</p:commandButton>
+				<span class="ui-separator"> <span
+					class="ui-icon ui-icon-grip-dotted-vertival" />
+				</span>
+				<p:commandButton action="#{tarefaMB.concluirTarefa}" icon="pi pi-check" update="tabela" process="@this" styleClass="rounded-button ui-button-secondary">
+					<f:setPropertyActionListener value="#{t}" target="#{tarefaMB.tarefa}"/>
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+	</p:panel>
+	</h:form>
+</h:body>
+</html>

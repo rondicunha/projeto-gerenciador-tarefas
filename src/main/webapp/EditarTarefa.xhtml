@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<title>Gerenciar Tarefas</title>
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:viewParam name="titulo" value="#{tarefaMB.tarefa.titulo}"/>
+		<f:viewParam name="descricao" value="#{tarefaMB.tarefa.descricao}"/>
+	</f:metadata>
+	
+	<h:form id="frm">
+		<p:autoUpdate autoUpdate="true" />
+		<p:panel header="Cadastro de Tarefas"
+			style="width:800px; height:550px; margin:auto;">
+			<div align="center">
+				<p:panelGrid columns="2"
+					columnClasses="ui-grid-col-2, ui-grid-col-8 ">
+					<p:outputLabel value="Título:" />
+					<p:inputText size="67" value="#{tarefaMB.tarefa.titulo}"
+						label="Título" />
+					<p:outputLabel value="Descrição:" />
+					<p:inputTextarea cols="70" rows="5" autoResize="false"
+						value="#{tarefaMB.tarefa.descricao}" />
+				</p:panelGrid>
+				<p:panelGrid columns="4">
+					<p:outputLabel value="Responsável:" />
+					<p:selectOneMenu value="#{tarefaMB.tarefa.responsavel}">
+						<f:selectItem itemLabel="Select" noSelectionOption="true" />
+						<f:selectItem itemLabel="Draco Malfoy" itemValue="Draco Malfoy" />
+						<f:selectItem itemLabel="Severus Snape" itemValue="Severus Snape" />
+						<f:selectItem itemLabel="Rúbeo Hagrid" itemValue="Rúbeo Hagrid" />
+						<f:selectItem itemLabel="Dino Thomas" itemValue="Dino Thomas" />
+					</p:selectOneMenu>
+					<p:outputLabel value="Prioridade:" />
+					<p:selectOneMenu value="#{tarefaMB.tarefa.prioridade}">
+						<f:selectItem itemLabel="Select" noSelectionOption="true" />
+						<f:selectItem itemLabel="Baixa" itemValue="Baixa" />
+						<f:selectItem itemLabel="Média" itemValue="Média" />
+						<f:selectItem itemLabel="Alta" itemValue="Alta" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+				<p:panelGrid columns="2"
+					columnClasses="ui-grid-col-2, ui-grid-col-2 ">
+					<p:outputLabel value="Deadline:" />
+					<p:inputText value="#{tarefaMB.tarefa.deadline}" />
+				</p:panelGrid>
+				<p:panelGrid columns="2" columnClasses="ui-grid-col-2, ui-grid-col-2 ">
+					<p:commandButton value="Cadastrar" action="#{tarefaMB.adicionar}" styleClass="ui-button-secondary" />
+				</p:panelGrid>
+			</div>
+		</p:panel>	
+	</h:form>
+</h:body>
+</html>
