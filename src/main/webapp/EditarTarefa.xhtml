@@ -18,7 +18,7 @@
 	
 	<h:form id="frm">
 		<p:autoUpdate autoUpdate="true" />
-		<p:panel header="Cadastro de Tarefas"
+		<p:panel header="Editar Tarefa"
 			style="width:800px; height:550px; margin:auto;">
 			<div align="center">
 				<p:panelGrid columns="2"
@@ -53,7 +53,8 @@
 					<p:inputText value="#{tarefaMB.tarefa.deadline}" />
 				</p:panelGrid>
 				<p:panelGrid columns="2" columnClasses="ui-grid-col-2, ui-grid-col-2 ">
-					<p:commandButton value="Cadastrar" action="#{tarefaMB.adicionar}" styleClass="ui-button-secondary" />
+					<p:commandButton value="Cadastrar" action="#{tarefaMB.editar}" styleClass="ui-button-secondary" />
+					<p:commandButton value="Cancelar" action="#{tarefaMB.cancelar}" styleClass="ui-button-secondary" />
 				</p:panelGrid>
 			</div>
 		</p:panel>	

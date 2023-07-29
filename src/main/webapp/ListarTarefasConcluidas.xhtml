@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<title>Gerenciar Tarefas</title>
+</h:head>
+<h:body>
+	<p:button icon="pi pi-angle-left"
+		styleClass="rounded-button ui-button-secondary"
+		outcome="/GerenciarTarefas.xhtml" style="margin-bottom:10px;" />
+	
+	<h:form>
+	<p:panel header="Listagem de Tarefas Concluídas:">
+		<p:dataTable value="#{tarefaMB.tarefasConcluidas}" var="t" id="tabela">
+			<p:column headerText="Numero">
+				<p:outputLabel value="#{t.id}" />
+			</p:column>
+			<p:column headerText="Título">
+				<p:outputLabel value="#{t.titulo}" />
+			</p:column>
+			<p:column headerText="Responsável">
+				<p:outputLabel value="#{t.responsavel}" />
+			</p:column>
+			<p:column headerText="Prioridade">
+				<p:outputLabel value="#{t.prioridade}" />
+			</p:column>
+			<p:column headerText="Ações">
+			
+				<p:commandButton action="#{tarefaMB.editar}" icon="pi pi-pencil" update="tabela" process="@this" styleClass="rounded-button ui-button-secondary">
+					<f:setPropertyActionListener value="#{t}" target="#{tarefaMB.tarefa}"/>
+				</p:commandButton>
+				<span class="ui-separator"> <span
+					class="ui-icon ui-icon-grip-dotted-vertival" />
+				</span>
+				<p:commandButton action="#{tarefaMB.remover}" icon="pi pi-trash" update="tabela" process="@this" styleClass="rounded-button ui-button-secondary">
+					<f:setPropertyActionListener value="#{t}" target="#{tarefaMB.tarefa}"/>
+				</p:commandButton>
+				<span class="ui-separator"> <span
+					class="ui-icon ui-icon-grip-dotted-vertival" />
+				</span>
+			</p:column>
+		</p:dataTable>
+	</p:panel>
+	</h:form>
+</h:body>
+</html>

@@ -18,24 +18,24 @@
 			<div align="center">
 				<p:panelGrid columns="2"
 					columnClasses="ui-grid-col-2, ui-grid-col-8 ">
-					<p:outputLabel value="Título:" />
+					<p:outputLabel value="Título*:" />
 					<p:inputText size="67" value="#{tarefaMB.tarefa.titulo}"
-						label="Título" />
-					<p:outputLabel value="Descrição:" />
+						label="Título" required="true" />
+					<p:outputLabel value="Descrição*:" />
 					<p:inputTextarea cols="70" rows="5" autoResize="false"
-						value="#{tarefaMB.tarefa.descricao}" />
+						value="#{tarefaMB.tarefa.descricao}" required="true"/>
 				</p:panelGrid>
 				<p:panelGrid columns="4">
-					<p:outputLabel value="Responsável:" />
-					<p:selectOneMenu value="#{tarefaMB.tarefa.responsavel}">
+					<p:outputLabel value="Responsável*:" />
+					<p:selectOneMenu value="#{tarefaMB.tarefa.responsavel}" required="true">
 						<f:selectItem itemLabel="Select" noSelectionOption="true" />
 						<f:selectItem itemLabel="Draco Malfoy" itemValue="Draco Malfoy" />
 						<f:selectItem itemLabel="Severus Snape" itemValue="Severus Snape" />
 						<f:selectItem itemLabel="Rúbeo Hagrid" itemValue="Rúbeo Hagrid" />
 						<f:selectItem itemLabel="Dino Thomas" itemValue="Dino Thomas" />
 					</p:selectOneMenu>
-					<p:outputLabel value="Prioridade:" />
-					<p:selectOneMenu value="#{tarefaMB.tarefa.prioridade}">
+					<p:outputLabel value="Prioridade*:" />
+					<p:selectOneMenu value="#{tarefaMB.tarefa.prioridade}" required="true">
 						<f:selectItem itemLabel="Select" noSelectionOption="true" />
 						<f:selectItem itemLabel="Baixa" itemValue="Baixa" />
 						<f:selectItem itemLabel="Média" itemValue="Média" />
@@ -52,7 +52,7 @@
 						update="frm tabela" styleClass="ui-button-secondary" />
 					<p:button value="Listar Tarefas"
 						styleClass="ui-button-outlined ui-button-secondary"
-						outcome="/GerenciarTarefas.xhtml" />
+						outcome="/GerenciarTarefas.xhtml"/>
 				</p:panelGrid>
 			</div>
 		</p:panel>	
